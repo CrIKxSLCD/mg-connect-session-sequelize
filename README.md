@@ -6,8 +6,8 @@ With connect
 
 ```javascript
 const connect = require("connect");
-// for express, just call it with 'require('connect-session-sequelize')(session.Store)'
-const SequelizeStore = require("connect-session-sequelize")(
+// for express, just call it with 'require('mg-connect-session-sequelize')(session.Store)'
+const SequelizeStore = require("mg-connect-session-sequelize")(
   connect.session.Store
 );
 
@@ -28,7 +28,7 @@ var Sequelize = require("sequelize");
 var session = require("express-session");
 
 // initalize sequelize with session store
-var SequelizeStore = require("connect-session-sequelize")(session.Store);
+var SequelizeStore = require("mg-connect-session-sequelize")(session.Store);
 
 // create database, ensure 'sqlite3' in your package.json
 var sequelize = new Sequelize("database", "username", "password", {
@@ -82,7 +82,7 @@ new SequelizeStore({
 
 ## Expiration interval cleanup: `stopExpiringSessions`
 
-As expirations are checked on an interval timer, `connect-session-sequelize` can keep your process from exiting. This can be problematic e.g. in testing when it is known that the application code will no longer be used, but the test script never terminates. If you know that the process will no longer be used, you can manually clean up the interval by calling the `stopExpiringSessions` method:
+As expirations are checked on an interval timer, `mg-connect-session-sequelize` can keep your process from exiting. This can be problematic e.g. in testing when it is known that the application code will no longer be used, but the test script never terminates. If you know that the process will no longer be used, you can manually clean up the interval by calling the `stopExpiringSessions` method:
 
 ```js
 // assuming you have set up a typical session store, for example:
@@ -100,7 +100,7 @@ after("clean up resources", () => {
 
 The additionalFields option can be used to add custom fields to the session table. These fields will be writable and can be inserted or updated as needed. The extendDefaultFields function should be used to include these fields when the session is created or updated. 
 ```javascript
-const SequelizeStore = require("connect-session-sequelize")(session.Store);
+const SequelizeStore = require("mg-connect-session-sequelize")(session.Store);
 var sequelize = new Sequelize("database", "username", "password", {
   dialect: "sqlite",
   storage: "./session.sqlite",
